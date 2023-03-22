@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { URLSearchParams } = require('url');
 const router = (req ,res)=>{
     if (req.url === '/') {
         const filePath =path.join(__dirname, '..','public','index.html') ;
@@ -45,6 +46,20 @@ const router = (req ,res)=>{
                 res.end(file)
             }
         });
+    }else if(req.url.includes('/autocomplete')){
+        let wordFile = path.join(__dirname, '..', 'word.txt');
+        const query = req.url.split('?term=')[1]
+        fs.readFile(wordFile, 'utf8' ,(err,data)=>{
+            if(err){
+                res.statusCode = 500
+                res.end('Server Error')
+                return;
+            }
+            const wordsData = data.toString().split('\n')
+            const match = wordsData.filter((word)=> word.startsWith(query))
+            res.writeHead(200)
+            res.end(JSON.stringify(match))
+        })
     }
 }
 module.exports = router;

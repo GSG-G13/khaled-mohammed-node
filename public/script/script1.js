@@ -3,6 +3,12 @@ const cardList = document.querySelector(".result-list");
 const searchInput = document.querySelector("#search-input");
 const api = "https://api.dictionaryapi.dev/api/v2/entries/en/";
 
+searchInput.addEventListener('keyup',(e)=>{
+    getData('GET',`/autocomplete?term=${e.target.value}`, (data)=>{
+         console.log((data).filter((item,index)=> index < 10));
+    })
+})
+
 searchForm.addEventListener("submit", (e) => {
   e.preventDefault();
   cardList.innerHTML = "";
