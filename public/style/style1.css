@@ -82,3 +82,21 @@ hr {
 .definition {
   margin: 12px;
 }
+.auto{
+  display: flex;
+  justify-content: center;
+  margin-right: 8.5rem;
+}
+.ulAuto{
+  background-color: white;
+  list-style: none;
+  width: 360px;
+}
+.word{
+  height: 25px;
+  margin-top: 10px;
+  margin-left: 7px;
+}
+.word:hover{
+  background-color: #9a9696;
+}
