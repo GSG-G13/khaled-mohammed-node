@@ -55,7 +55,7 @@ const router = (req ,res)=>{
                 res.end('Server Error')
                 return;
             }
-            const wordsData = data.toString().split('\n')
+            const wordsData = data.toString().split('\r\n')
             const match = wordsData.filter((word)=> word.startsWith(query))
             res.writeHead(200)
             res.end(JSON.stringify(match))

@@ -1,11 +1,26 @@
 const searchForm = document.querySelector("#search-form");
 const cardList = document.querySelector(".result-list");
 const searchInput = document.querySelector("#search-input");
+const wordList = document.querySelector('.ulAuto')
 const api = "https://api.dictionaryapi.dev/api/v2/entries/en/";
 
 searchInput.addEventListener('keyup',(e)=>{
+    wordList.textContent = '';
     getData('GET',`/autocomplete?term=${e.target.value}`, (data)=>{
-         console.log((data).filter((item,index)=> index < 10));
+        
+
+         const sugg = data.filter((word,index)=> index < 10)
+         sugg.forEach((item)=>{
+            let wordItem = document.createElement('li')
+            wordItem.classList.add('word')
+            wordItem.textContent = item
+
+            wordList.appendChild(wordItem)
+
+            wordItem.addEventListener('click',(e)=>{
+                searchInput.value = e.target.textContent
+            })
+         })
     })
 })
 
