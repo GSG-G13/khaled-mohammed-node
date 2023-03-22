@@ -13,8 +13,8 @@ wordList.style.display = 'block'
   getData('GET', `/autocomplete?term=${e.target.value}`, (data) => {
 
 
-    const sugg = data.filter((word, index) => index < 10)
-    sugg.forEach((item) => {
+    
+    data.forEach((item) => {
       let wordItem = document.createElement('li')
       wordItem.classList.add('word')
       wordItem.textContent = item

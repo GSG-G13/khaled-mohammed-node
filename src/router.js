@@ -56,7 +56,7 @@ const router = (req ,res)=>{
                 return;
             }
             const wordsData = data.toString().split('\r\n')
-            const match = wordsData.filter((word)=> word.startsWith(query))
+            const match = wordsData.filter((word,index)=> word.startsWith(query)).filter((item,index)=> index < 10)
             res.writeHead(200)
             res.end(JSON.stringify(match))
         })
