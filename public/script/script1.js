@@ -9,7 +9,7 @@ const api = "https://api.dictionaryapi.dev/api/v2/entries/en/";
 searchInput.addEventListener('keyup', (e) => {
 wordList.style.display = 'block'
 
-  wordList.textContent = '';
+  wordList.innerHTML = '';
   getData('GET', `/autocomplete?term=${e.target.value}`, (data) => {
 
 
